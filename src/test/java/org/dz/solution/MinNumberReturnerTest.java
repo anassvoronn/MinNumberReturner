@@ -3,6 +3,8 @@ package org.dz.solution;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Random;
+
 
 public class MinNumberReturnerTest {
 
@@ -44,6 +46,32 @@ public class MinNumberReturnerTest {
         double result = returner.getMinimalNumber(-5, -6, -6);
         Assert.assertEquals(-5, result, 0);
 
+    }
+
+    @Test
+    public void getMinimalNumberRandomNumbers() {
+        Random random = new Random();
+        final boolean positiveInt = random.nextBoolean();
+        final boolean positiveFloat = random.nextBoolean();
+        final boolean positiveDouble = random.nextBoolean();
+
+        int limit = 1000;
+        int intNumber = random.nextInt(limit);
+        float floatNumber = random.nextFloat() * limit;
+        double doubleNumber = random.nextDouble() * limit;
+
+        if (!positiveInt) {
+            intNumber *= -1;
+        }
+        if (!positiveFloat) {
+            floatNumber *= -1;
+        }
+        if (!positiveDouble) {
+            doubleNumber *= -1;
+        }
+        MinNumberReturner returner = new MinNumberReturner();
+        double result = returner.getMinimalNumber(intNumber, floatNumber, doubleNumber);
+        System.out.println(result);
     }
 
 }
